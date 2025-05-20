@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
+import {expect } from '@playwright/test';
 import { WelcomePage } from '../pageObjects/WelcomePage';
-
+import { test } from "../cusomFixtures/myFixture";
 test('has title', async ({ page }) => {
   await page.goto('/');
 
@@ -73,3 +73,10 @@ test('search component - invalid search', async ({ page }) => {
   await welcomePage.searchComponent.performSearch('invalidquery123');
   await welcomePage.searchComponent.verifySearchResults(true);
 });
+
+test('custom fixture', async ({ welcomePage }) => {
+    await welcomePage.searchComponent.performSearch('invalidquery123');
+    await welcomePage.searchComponent.verifySearchResults(true); 
+  }); 
+
+
