@@ -1,7 +1,7 @@
 import { request } from 'playwright-core';
 import { Page } from '@playwright/test';
 
-  async function loginHelper(page:Page) :Promise<string>
+  async function loginHelper() :Promise<string>
   { 
     let sidValue = '';
      var client = await request.newContext();

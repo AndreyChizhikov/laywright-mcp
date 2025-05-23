@@ -21,15 +21,15 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: 14,
+  workers: 2,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-    
+   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.BASE_URL,
-    headless: true,
+    //baseURL: process.env.BASE_URL,
+    headless: false,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     screenshot: 'on',
@@ -54,7 +54,28 @@ export default defineConfig({
         '**/smoke/**'
       ],
     },
+    {
+      name: 'setup',
   
+      testMatch: [
+        '**/propsTests/setup.spec.ts'
+      ]
+    },
+    {
+       name: 'propsTests',
+      use: {
+        ...devices['Desktop Chrome'],
+        // Use prepared auth state.
+        storageState: 'playwright/.auth/user.json',
+      },
+      testMatch: [
+        '**/propsTests/propsTest.spec.ts'
+      ],
+      dependencies: ['setup'],
+    }
+
+
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

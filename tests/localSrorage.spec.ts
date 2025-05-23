@@ -5,7 +5,7 @@ import { get } from "http";
 
 test('login by API', { tag: '@cookie' }, async ({ page }) => {
     await page.goto('https://guest:welcome2qauto@qauto.forstudy.space');
-    var cookie = await loginHelper(page);
+    var cookie = await loginHelper();
     await setCookies(page, cookie);
 
     // Check if the user is logged in by verifying the URL
@@ -14,7 +14,7 @@ test('login by API', { tag: '@cookie' }, async ({ page }) => {
 
 test('local Storage', { tag: '@localStoradge' }, async ({ page }) => {
 
-    await page.goto('https://guest:welcome2qauto@qauto.forstudy.space');
+    await page.goto('https://guest:welcome2qauto@qauto.forstudy.space/swagger');
 
     const value = await page.evaluate(() => {
        

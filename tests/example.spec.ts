@@ -1,6 +1,7 @@
 import {expect } from '@playwright/test';
 import { WelcomePage } from '../pageObjects/WelcomePage';
 import { test } from "../cusomFixtures/myFixture";
+
 test('has title', async ({ page }) => {
   await page.goto('/');
 
