@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  playwright-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: playwright-api-tests
+    environment:
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+   
+    command: ["npx", "playwright", "test", "tests/apiTests/carsApi.spec.ts"]
