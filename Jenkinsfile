@@ -24,19 +24,13 @@ pipeline {
 
         stage('Build Docker image') {
             steps {
-                script {
-                    dockerImage = docker.build("playwright-api-tests")
-                }
+                sh 'docker build -t playwright-api-tests .'
             }
         }
 
-        stage('Run API tests') {
+       stage('Run API tests') {
             steps {
-                script {
-                    dockerImage.inside('--rm') {
-                        sh 'npx playwright test tests/apiTests/carsApi.spec.ts'
-                    }
-                }
+                sh 'docker run --rm playwright-api-tests npx playwright test tests/apiTests/carsApi.spec.ts'
             }
         }
     }
