@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Show PATH') {
+           steps {
+               sh 'echo $PATH'
+             }
+        }
 
         stage('Check Docker') {
             steps {
