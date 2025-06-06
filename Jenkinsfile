@@ -23,7 +23,7 @@ pipeline
         }
         stage('Run Tests') {
             steps {
-                sh 'docker run --rm -v $PWD:/playwright-report:/app/playwright-report playwright-api-tests npx playwright test tests/api/carsApi.spec.ts'
+                sh 'docker run --rm -v $PWD/playwright-report:/app/playwright-report playwright-api-tests npx playwright test tests/api/carsApi.spec.ts'
             }
         }
     }
