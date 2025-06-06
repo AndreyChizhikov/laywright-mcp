@@ -28,16 +28,16 @@ pipeline {
             }
         }
 
-       stage('Run API tests') {
-            steps {
-                sh 'docker run --rm playwright-api-tests npx playwright test tests/apiTests/carsApi.spec.ts'
+        stage('Run API tests') {
+             steps {
+                sh 'docker run --rm -v $PWD/playwright-report:/app/playwright-report playwright-api-tests npx playwright test tests/apiTests/carsApi.spec.ts'
             }
         }
     }
 
-    post {
-        always {
-            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
-        }
+   post {
+    always {
+        archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+       }
     }
 }
