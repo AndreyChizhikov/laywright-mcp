@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+
+        stage('Check Docker') {
+            steps {
+                sh 'which docker && docker --version'
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout scm
