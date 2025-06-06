@@ -8,7 +8,7 @@ pipeline
     stages{
         stage('Check docker') {
             steps {
-               st 'which docker && docker --version'
+               sh 'which docker && docker --version'
             }
         }
         stage('Checkout') {
